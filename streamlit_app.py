@@ -1,17 +1,15 @@
 import streamlit as st
 
 
-@st.experimental_memo
-def init_session_state():
-    st.session_state.list = [0]
-
-
 def app():
     st.subheader("Demo: Streamlit input form with interactive add/remove.")
 
     st.info("Sums the numbers entered.")
 
     with st.form("form"):
+        if "list" not in st.session_state:
+            st.session_state.list = [0]
+
         st_input_area = st.container()
         st_add_button_area = st.container()
 
@@ -73,5 +71,4 @@ else:
 
 if __name__ == "__main__":
     st.set_page_config("Unlimited forms demo")
-    init_session_state()
     app()
